@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 //all importing file congiguration
 const userRoute = require("./routes/user");
+const postRoute = require("./routes/post");
 
 const PORT = 9000;
 const app = express();
@@ -43,6 +44,7 @@ mongoose
 
 //definging end points
 app.use("/api", userRoute);
+app.use("/api", postRoute);
 
 app.listen(PORT, () => {
   console.log(`server is listing port: ${PORT}`);
