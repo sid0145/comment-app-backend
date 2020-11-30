@@ -1,0 +1,1 @@
+exports.comments = (req, res) => {};
