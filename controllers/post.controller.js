@@ -36,3 +36,21 @@ exports.getPosts = (req, res) => {
       });
     });
 };
+
+exports.getPostById = (req, res) => {
+  const { id } = req.params;
+  Post.findById(id)
+    .then((post) => {
+      if (!post) {
+        return res.status(500).json({
+          message: "post not found",
+        });
+      }
+      return res.status(200).json(post);
+    })
+    .catch((err) => {
+      return res.status(401).json({
+        message: "you are not authenticated!",
+      });
+    });
+};

@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //importing user model
 
@@ -48,14 +49,21 @@ exports.findUser = (req, res) => {
           message: "Auth Failed!",
         });
       }
-      // const token = jwt.sign(
-      //   { email: fetchedUser.email, userId: fetchedUser._id },
-      //   "secret_this_should_be_longer",
-      //   { expiresIn: "1h" }
-      // );
+
+      //setting token
+      const token = jwt.sign(
+        {
+          email: fetchedUser.email,
+          userId: fetchedUser._id,
+        },
+        "secret_this_should_be_longer",
+        { expiresIn: "1h" }
+      );
       res.status(200).json({
         message: "user found",
         username: fetchedUser.username,
+        token: token,
+        expiresIn: 3600,
         userId: fetchedUser._id,
       });
     })
