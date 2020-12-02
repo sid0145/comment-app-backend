@@ -16,6 +16,7 @@ mongoose
     "mongodb+srv://Sid:jBWcaYOiVj9oZw9M@cluster0.xz4rb.mongodb.net/comment-app-db?retryWrites=true",
     {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     }
   )
   .then(() => {
