@@ -55,6 +55,7 @@ exports.findUser = (req, res) => {
         {
           email: fetchedUser.email,
           userId: fetchedUser._id,
+          username: fetchedUser.username,
         },
         "secret_this_should_be_longer",
         { expiresIn: "1h" }
