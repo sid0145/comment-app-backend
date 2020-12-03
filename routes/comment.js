@@ -13,6 +13,9 @@ commentRouter.get(
   commentController.getCommentByPostId
 );
 
+//count the comment
+commentRouter.get("/commentCount/:id", commentController.getCount);
+
 //get a particular comment
 commentRouter.get("/comment/:id", checkAuth, commentController.getComment);
 

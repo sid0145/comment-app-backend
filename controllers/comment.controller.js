@@ -8,7 +8,7 @@ exports.comments = (req, res) => {
     userId: req.userData.userId,
     username: req.userData.username,
   });
-  console.log(comment);
+  // console.log(comment);
   comment
     .save()
     .then((result) => {
@@ -31,7 +31,7 @@ exports.getCommentByPostId = (req, res) => {
           message: "no comment found",
         });
       }
-      console.log(comments);
+      //console.log(comments);
       return res.status(200).json({ comments: comments });
     },
     (err) => {
@@ -40,6 +40,14 @@ exports.getCommentByPostId = (req, res) => {
       });
     }
   );
+};
+
+//get count
+exports.getCount = (req, res) => {
+  const { id } = req.params;
+  Comment.count({ postId: id }).then((count) => {
+    return res.json(count);
+  });
 };
 
 //get a comment
@@ -62,7 +70,7 @@ exports.getComment = (req, res) => {
 //update a comment
 exports.updateComment = (req, res) => {
   const comment = new Comment({
-    _id: req.body.id,
+    _id: req.params.id,
     comment: req.body.comment,
     postId: req.body.postId,
     userId: req.userData.userId,
@@ -70,7 +78,9 @@ exports.updateComment = (req, res) => {
   });
   Comment.updateOne({ _id: req.params.id }, comment)
     .then((comment) => {
-      return res.status(200).json(comment);
+      return res.status(200).json({
+        comment: comment,
+      });
     })
     .catch((err) => {
       return res.status(500).json(err);
@@ -81,11 +91,12 @@ exports.updateComment = (req, res) => {
 
 exports.deleteComment = (req, res) => {
   const { id } = req.params;
-  Comment.findOneAndDelete(id)
+  console.log(id);
+  Comment.findOneAndDelete({ _id: id })
     .then((comment) => {
       if (!comment) {
         return res.status(500).json({
-          message: "client not found",
+          message: "comment not found",
         });
       }
       return res.status(200).json(comment);
