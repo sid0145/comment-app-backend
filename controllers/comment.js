@@ -42,7 +42,7 @@ exports.getCommentByPostId = (req, res) => {
   );
 };
 
-//get count
+//get count of total comment by postId
 exports.getCount = (req, res) => {
   const { id } = req.params;
   Comment.count({ postId: id }).then((count) => {

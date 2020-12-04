@@ -1,5 +1,6 @@
 const Post = require("../models/post.model");
 
+//creat a post
 exports.createPost = (req, res) => {
   const post = new Post({
     username: req.body.username,
@@ -23,6 +24,7 @@ exports.createPost = (req, res) => {
     });
 };
 
+//get all posts
 exports.getPosts = (req, res) => {
   Post.find()
     .then((result) => {
@@ -37,6 +39,7 @@ exports.getPosts = (req, res) => {
     });
 };
 
+//get post by id
 exports.getPostById = (req, res) => {
   const { id } = req.params;
   Post.findById(id)
