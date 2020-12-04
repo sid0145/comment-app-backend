@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const userRoute = require("./routes/user");
 const postRoute = require("./routes/post");
 const commentRoute = require("./routes/comment");
+const multiCommentRoute = require("./routes/mutiComment");
 
 const PORT = 9000;
 const app = express();
@@ -49,6 +50,7 @@ app.use((req, res, next) => {
 app.use("/api", userRoute);
 app.use("/api", postRoute);
 app.use("/api", commentRoute);
+app.use("/api", multiCommentRoute);
 
 app.listen(PORT, () => {
   console.log(`server is listing port: ${PORT}`);

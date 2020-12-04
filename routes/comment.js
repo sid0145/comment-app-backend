@@ -1,7 +1,7 @@
 const express = require("express");
 const commentRouter = express.Router();
 const checkAuth = require("../middleware/auth-check");
-const commentController = require("../controllers/comment.controller");
+const commentController = require("../controllers/comment");
 
 //create new comment with postid , and comment data
 commentRouter.post("/comments", checkAuth, commentController.comments);
